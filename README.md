@@ -1,68 +1,134 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tutorial about testing React application
 
-## Available Scripts
 
-In the project directory, you can run:
+## Test types
 
-### `npm start`
+![test types](./test-types.png)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Manual** - при разработке мы так или иначе тестируем код, проверяя результат 'на глаз'.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**Unit:**
 
-### `npm test`
+ -  Тестирование функционала в изоляции
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ -  Не тестируют контракты между модулями
 
-### `npm run build`
+ - Приходится писать много boilerplate кода
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+**Integration**  - Тестируют связанный функционал, к примеру флоу авторизации:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Медленные
 
-### `npm run eject`
+- Требуют много ресурсов
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Тяжело писать
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- НЕ могут симулировать ошибки
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Не показывают где именно произошла ошибка
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+***
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Technologies:**
 
-### Code Splitting
+1. [JEST](https://jestjs.io/docs/ru/tutorial-react) - Test Runner - отвечает за исполнение (вызов) тестов и предоставляет библиотеку для
+валидации. Тесты не в браузере а в Node.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+2. [SINON](https://sinonjs.org/)
 
-### Analyzing the Bundle Size
+3. [Enzyme](https://airbnb.io/enzyme/) - эмулирует Реакт-приложение, позволяет маунтить компоненты и работать с DOM.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+***
 
-### Making a Progressive Web App
+## Что тестировать
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+  Ненадо тестировать сами библиотеки, они уже покрыты тестами
 
-### Advanced Configuration
+  Ненадо тестировать HTTP-запросы, вместо этого эмулируйте данные ответа и тестируйте их
+влияние
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+  Не тестируйте сложные отношения. К примеру кликаем кнопку в одном месте, и в другом
+должно что-то происходить. Это зависимость компонента от компонента. Вместо этого
+можно тестировать эффект клика кнопки отдельно, а реакцию на изменение состояния
+отдельно
 
-### Deployment
+  Тестируйте в изоляции: редюсер, метод компонента, условный рендер
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+***
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## JEST
+
+
+### Настройка с Create React App
+
+Если вы только знакомитесь с React, мы рекомендуем использовать Create React App. Готово к использованию и поставляется вместе с Jest! Вам понадобится только добавить **_react-test-renderer_** для рендеринга снимков.
+
+```
+
+yarn add --dev react-test-renderer
+
+```
+
+**Filename Conventions**
+
+Jest will look for test files with any of the following popular naming conventions:
+
+- Files with .js suffix in __tests__ folders.
+
+- Files with .test.js suffix.
+
+- Files with .spec.js suffix.
+
+
+The .test.js / .spec.js files (or the __tests__ folders) can be located at any depth under the src top level folder.
+
+We recommend to put the test files (or __tests__ folders) next to the code they are testing so that relative imports appear shorter. 
+For example, if App.test.js and App.js are in the same folder, the test just needs to import App from './App' instead of a long relative path. 
+Collocation also helps find tests more quickly in larger projects.
+
+
+### [Настройка без Create React App](https://jestjs.io/docs/ru/tutorial-react#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B1%D0%B5%D0%B7-create-react-app)
+
+
+**Out of the box, Create React App only supports overriding these Jest options:**
+
+  • collectCoverageFrom
+
+  • coverageReporters
+
+  • coverageThreshold
+
+  • extraGlobals
+
+  • globalSetup
+
+  • globalTeardown
+
+  • resetMocks
+
+  • resetModules
+
+  • snapshotSerializers
+
+  • watchPathIgnorePatterns
+
+
+## Enzime
+
+``` 
+
+npm i --save-dev enzyme enzyme-adapter-react-16
+
+```
+
+***
+
+## Useful links:
+
+- [create-react-app/docs/running-tests](https://facebook.github.io/create-react-app/docs/running-tests)
+
+- [GoIt React course testing](https://app.schoology.com/course/1438662537/materials/gp/1640123789)
