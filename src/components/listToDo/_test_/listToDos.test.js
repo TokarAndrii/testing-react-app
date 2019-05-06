@@ -1,8 +1,8 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
-import ListToDos from './ListToDos';
-import styles from './ListToDos.module.css'
+import ListToDos from '../ListToDos';
+import styles from '../ListToDos.module.css'
 
 configure({ adapter: new Adapter() });
 
@@ -67,4 +67,5 @@ describe("ListToDos tests", () => {
         const liItems = wrapper.find('li.todoItem');
         expect(liItems.length).toBe(2);
     });
+
 })

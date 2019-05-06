@@ -147,3 +147,5 @@ console.log(wrapper.debug());
 
 - [simpletut youtube](https://www.youtube.com/watch?v=EgJZv9Iyj-E&list=PL-Db3tEF6pB8Am-IhCRgyGSxTalkDpUV_)
 
+- [Unit testing ReactJS Redux Actions, Reducers and Epics with Jest](https://itnext.io/unit-testing-redux-actions-reducers-and-epics-with-jest-484f8a59f1f2)
+

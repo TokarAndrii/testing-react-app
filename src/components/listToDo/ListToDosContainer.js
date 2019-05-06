@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import ListToDos from './ListToDos';
-import toDosActions from './toDosActions'
+import toDosActions from './toDosActions';
+import selectors from '../app/selectors';
 
 const mstp = state => ({
-    toDos: state.toDos,
+    toDos: selectors.getToDos(state),
 });
 
 // const mdtp = dispatch => ({
