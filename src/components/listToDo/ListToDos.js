@@ -10,7 +10,7 @@ const ListToDos = ({ toDos, getToDos }) => {
         <>
             {toDos.length < 1 && <div>Empty</div>}
 
-            {toDos.length >= 0 && (
+            {toDos && toDos.length >= 1 && (
                 <ul className={styles.todoList}>
                     {toDos.map(toDo => {
                         return (

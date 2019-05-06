@@ -116,12 +116,22 @@ Collocation also helps find tests more quickly in larger projects.
 
   • watchPathIgnorePatterns
 
+****
 
 ## Enzime
 
 ``` 
 
 npm i --save-dev enzyme enzyme-adapter-react-16
+
+```
+
+to see the result of  output as strting:
+
+```
+
+const wrapper = shallow(<Book title="Huckleberry Finn" />);
+console.log(wrapper.debug());
 
 ```
 
@@ -132,3 +142,8 @@ npm i --save-dev enzyme enzyme-adapter-react-16
 - [create-react-app/docs/running-tests](https://facebook.github.io/create-react-app/docs/running-tests)
 
 - [GoIt React course testing](https://app.schoology.com/course/1438662537/materials/gp/1640123789)
+
+- [simpletut github repo](https://github.com/simpletut/Testing-React-Redux-with-Jest-and-Enzyme)
+
+- [simpletut youtube](https://www.youtube.com/watch?v=EgJZv9Iyj-E&list=PL-Db3tEF6pB8Am-IhCRgyGSxTalkDpUV_)
+
