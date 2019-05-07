@@ -3,7 +3,7 @@ import api from '../../utils/api';
 import toDosTypes from './toDosTypes';
 import toDosActions from "./toDosActions";
 
-function* getTodos() {
+export function* getTodos() {
     const todos = yield call(api.getPosts);
     yield put(toDosActions.FETCH_TO_DOS_SUCCEDED(todos));
 }
