@@ -1,7 +1,7 @@
 import listToDosReducer from '../listToDosReducer';
 import listToDosTypes from '../toDosTypes'
 
-const toDos = [
+export const toDos = [
     {
         "id": 1,
         "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",

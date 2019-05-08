@@ -22,6 +22,7 @@ describe("test list toDos saga", () => {
 
         const callback = sinon.stub(api, 'getPosts').callsFake(() => mockTodos);
 
+
         await runSaga(fakeStore, getTodos).toPromise();
         //console.log(dispatched);
         sinon.assert.calledOnce(callback);
