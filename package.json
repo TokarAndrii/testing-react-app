@@ -15,6 +15,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.2",
+    "redux-saga-testing": "^1.0.5",
     "sinon": "^7.3.2"
   },
   "scripts": {
